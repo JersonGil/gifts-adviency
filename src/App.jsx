@@ -1,22 +1,25 @@
-import { useState } from "react";
-import GlobalStyle from "./components/GlobalStyles/GlobalStyles";
-import GiftsList from "./components/GiftsList/GiftsList";
-import Card from "./components/Card/Card";
-import Forms from "./components/Form/Forms";
-import isEmpty from 'lodash/isEmpty'
+import { useState } from "react"
+import GlobalStyle from "./components/GlobalStyles/GlobalStyles"
 
-import Container from "./styles.js";
+/** CHILDS COMPONENTS */
+import GiftsList from "./components/GiftsList/GiftsList"
+import Card from "./components/Card/Card"
+import Forms from "./components/Form/Forms"
+import Modal from "./components/Modal/Modal"
+
+import Container from "./styles.js"
 
 export const GIFTS = []
 
 export default function App() {
   const [gifts, setGifts] = useState(GIFTS);
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleDeleteGifts = (index) => {
     const newGifts = JSON.parse(localStorage.getItem('gifts'))
-    newGifts.splice(index, 1);
+    newGifts.splice(index, 1)
     localStorage.setItem('gifts', JSON.stringify(newGifts))
-    setGifts(newGifts);
+    setGifts(newGifts)
   };
 
   return (
@@ -28,7 +31,19 @@ export default function App() {
               <h1>Regalos:</h1>
             </Card.Header>
             <Card.Body>
-              <Forms setGifts={setGifts} gifts={gifts} />
+              <button 
+                className="btn btn-success mb-3"
+                onClick={() => setIsOpen(true)}
+              >
+                Agregar Regalos
+              </button>
+              <Modal
+                title="Que deseas para navidad?" 
+                isOpen={isOpen}
+                closeModal={() => setIsOpen(false)}
+              >
+                <Forms setGifts={setGifts} gifts={gifts} closeModal={setIsOpen} />
+              </Modal>
               <h3>Lista:</h3>
               <GiftsList
                 handleDeleteAllGifts={() => {
@@ -47,5 +62,5 @@ export default function App() {
       </div>
       <GlobalStyle />
     </Container>
-  );
+  )
 }

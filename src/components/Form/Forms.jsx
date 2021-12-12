@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Input from "../Input/Input";
-import Container from "./styles";
+import { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import Input from "../Input/Input"
+import Container from "./styles"
 import { isUndefined, isEmpty } from 'lodash'
 
-const Form = ({ setGifts, gifts }) => {
+const Form = ({ setGifts, gifts, closeModal }) => {
   const [value, setValue] = useState({
-    gift: "",
+    gift: '',
     count: 0,
     image: ''
   });
 
   useEffect(() => {
     setValue({
-      gift: "",
+      gift: '',
       count: 0,
       image: ''
     });
@@ -43,8 +43,10 @@ const Form = ({ setGifts, gifts }) => {
         : localStorage.setItem('gifts', JSON.stringify([...oldGifts, value]))
     }
 
+    closeModal(false)
+
     setValue({
-      gift: "",
+      gift: '',
       count: 0,
       image: ''
     });
@@ -53,10 +55,7 @@ const Form = ({ setGifts, gifts }) => {
   return (
     <Container autoComplete="off" className="row g-3" onSubmit={onSubmit}>
       <div className="col-11">
-        <label htmlFor="gift" className="form-label">
-          que deseas para navidad?
-        </label>
-        <div className="d-flex">
+        <div className="d-flex mb-3">
           <div className="col-5">
             <Input
               type="text"
@@ -91,8 +90,8 @@ const Form = ({ setGifts, gifts }) => {
           </div>
         </div>
       </div>
-      <div className="col-auto">
-        <button type="submit" className="btn btn-success mb-3">
+      <div className="col-auto w-100">
+        <button type="submit" className="btn btn-success mb-3 w-100">
           Agregar Regalo
         </button>
       </div>
@@ -102,7 +101,8 @@ const Form = ({ setGifts, gifts }) => {
 
 Form.propTypes = {
   gifts: PropTypes.array,
-  setGifts: PropTypes.func
+  setGifts: PropTypes.func,
+  closeModal: PropTypes.func
 };
 
 export default Form;
