@@ -3,27 +3,28 @@ import GlobalStyle from "./components/GlobalStyles/GlobalStyles";
 import GiftsList from "./components/GiftsList/GiftsList";
 import Card from "./components/Card/Card";
 import Forms from "./components/Form/Forms";
+import isEmpty from 'lodash/isEmpty'
 
 import Container from "./styles.js";
 
+export const GIFTS = [{
+  gift: "Xbox",
+  count: 1
+},
+{
+  gift: "Play 5",
+  count: 1
+},
+{
+  gift: "La paz mundial",
+  count: 1
+}]
+
 export default function App() {
-  const [gifts, setGifts] = useState([
-    {
-      gift: "Xbox",
-      count: 1
-    },
-    {
-      gift: "Play 5",
-      count: 1
-    },
-    {
-      gift: "La paz mundial",
-      count: 1
-    }
-  ]);
+  const [gifts, setGifts] = useState(GIFTS);
 
   const handleDeleteGifts = (index) => {
-    const newGifts = [...gifts];
+    const newGifts = JSON.parse(localStorage.getItem('gifts'))
     newGifts.splice(index, 1);
     localStorage.setItem('gifts', JSON.stringify(newGifts))
     setGifts(newGifts);
@@ -45,6 +46,7 @@ export default function App() {
                   setGifts([]);
                   localStorage.setItem('gifts', JSON.stringify([]))
                 }}
+                gifts={gifts}
                 handleDeleteGifts={handleDeleteGifts}
               />
             </Card.Body>

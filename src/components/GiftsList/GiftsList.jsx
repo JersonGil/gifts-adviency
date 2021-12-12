@@ -4,18 +4,14 @@ import { BsTrash, BsGift } from "react-icons/bs";
 import EmptyList from "./EmptyList";
 import PropTypes from "prop-types";
 
-const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts }) => {
-  const gifts = JSON.parse(localStorage.getItem('gifts'))
-
-  /* useEffect(() => {
-    setRows(gifts);
-  }, [gifts]); */
+const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts, gifts }) => {
+  const newGifts = JSON.parse(localStorage.getItem('gifts')) ?? gifts
 
   return (
     <List>
-      {gifts.length > 0 ? (
+      {newGifts.length > 0 ? (
         <div className="w-100">
-          {gifts.map((g, index) => (
+          {newGifts.map((g, index) => (
             <div className="container-icon" key={index}>
               <label>
                 <BsGift />
@@ -46,6 +42,7 @@ const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts }) => {
 };
 
 GiftsList.propTypes = {
+  gifts: PropTypes.array,
   handleDeleteGifts: PropTypes.func,
   handleDeleteAllGifts: PropTypes.func
 };

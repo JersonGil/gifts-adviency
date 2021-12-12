@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input/Input";
 import Container from "./styles";
-import isUndefined from 'lodash/isUndefined'
+import { isUndefined, isEmpty } from 'lodash'
 
 const Form = ({ setGifts, gifts }) => {
   const [value, setValue] = useState({
@@ -35,7 +35,10 @@ const Form = ({ setGifts, gifts }) => {
 
     if (value.gift !== "" && value.count > 0 && isUndefined(totalGifts)) {
       setGifts((prevState) => [...prevState, value]);
-      localStorage.setItem('gifts', JSON.stringify([...gifts, value]))
+      const oldGifts = JSON.parse(localStorage.getItem('gifts'))
+      isEmpty(oldGifts)
+        ? localStorage.setItem('gifts', JSON.stringify([value]))
+        : localStorage.setItem('gifts', JSON.stringify([...oldGifts, value]))
     }
 
     setValue({
