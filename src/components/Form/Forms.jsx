@@ -7,13 +7,15 @@ import { isUndefined, isEmpty } from 'lodash'
 const Form = ({ setGifts, gifts }) => {
   const [value, setValue] = useState({
     gift: "",
-    count: 0
+    count: 0,
+    image: ''
   });
 
   useEffect(() => {
     setValue({
       gift: "",
-      count: 0
+      count: 0,
+      image: ''
     });
   }, [])
 
@@ -43,7 +45,8 @@ const Form = ({ setGifts, gifts }) => {
 
     setValue({
       gift: "",
-      count: 0
+      count: 0,
+      image: ''
     });
   };
 
@@ -54,15 +57,27 @@ const Form = ({ setGifts, gifts }) => {
           que deseas para navidad?
         </label>
         <div className="d-flex">
-          <div className="col-10">
+          <div className="col-5">
             <Input
               type="text"
               className="form-control"
               id="gift"
               name="gift"
+              placeholder="gatos"
               value={value.gift}
               onChange={onChangeInput}
             />
+          </div>
+          <div className="col-5 ms-2">
+            <Input
+                type="text"
+                className="form-control"
+                id="image"
+                name="image"
+                placeholder="https://www.google.com/image"
+                value={value.image}
+                onChange={onChangeInput}
+              />
           </div>
           <div className="col-2 ms-2">
             <Input

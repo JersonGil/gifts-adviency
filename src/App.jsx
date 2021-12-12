@@ -7,18 +7,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import Container from "./styles.js";
 
-export const GIFTS = [{
-  gift: "Xbox",
-  count: 1
-},
-{
-  gift: "Play 5",
-  count: 1
-},
-{
-  gift: "La paz mundial",
-  count: 1
-}]
+export const GIFTS = []
 
 export default function App() {
   const [gifts, setGifts] = useState(GIFTS);

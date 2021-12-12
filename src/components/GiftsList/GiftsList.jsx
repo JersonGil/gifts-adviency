@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import List from "./styles";
-import { BsTrash, BsGift } from "react-icons/bs";
-import EmptyList from "./EmptyList";
 import PropTypes from "prop-types";
+
+/** CHILD COMPONENTS */
+import EmptyList from "./EmptyList";
+import List from "./styles";
+import { BsTrash } from "react-icons/bs";
+import Images from "../Image/Images";
 
 const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts, gifts }) => {
   const newGifts = JSON.parse(localStorage.getItem('gifts')) ?? gifts
@@ -14,7 +17,7 @@ const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts, gifts }) => {
           {newGifts.map((g, index) => (
             <div className="container-icon" key={index}>
               <label>
-                <BsGift />
+                <Images img={g.image} width={40} height={40} alt={g.gift} />
                 {" - "}
                 {g.gift}
               </label>
