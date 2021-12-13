@@ -3,20 +3,13 @@ import PropTypes from "prop-types"
 import Input from "../Input/Input"
 import Container from "./styles"
 import { isUndefined, isEmpty } from 'lodash'
+import { INITIAL_VALUE } from '../../utils/constants'
 
 const Form = ({ setGifts, gifts, closeModal }) => {
-  const [value, setValue] = useState({
-    gift: '',
-    count: 0,
-    image: ''
-  });
+  const [value, setValue] = useState(INITIAL_VALUE);
 
   useEffect(() => {
-    setValue({
-      gift: '',
-      count: 0,
-      image: ''
-    });
+    setValue(INITIAL_VALUE);
   }, [])
 
   const onChangeInput = (e) => {
@@ -45,18 +38,14 @@ const Form = ({ setGifts, gifts, closeModal }) => {
 
     closeModal(false)
 
-    setValue({
-      gift: '',
-      count: 0,
-      image: ''
-    });
+    setValue(INITIAL_VALUE);
   };
 
   return (
     <Container autoComplete="off" className="row g-3" onSubmit={onSubmit}>
       <div className="col-11">
         <div className="d-flex mb-3">
-          <div className="col-5">
+          <div className="col-10">
             <Input
               type="text"
               className="form-control"
@@ -67,17 +56,6 @@ const Form = ({ setGifts, gifts, closeModal }) => {
               onChange={onChangeInput}
             />
           </div>
-          <div className="col-5 ms-2">
-            <Input
-                type="text"
-                className="form-control"
-                id="image"
-                name="image"
-                placeholder="https://www.google.com/image"
-                value={value.image}
-                onChange={onChangeInput}
-              />
-          </div>
           <div className="col-2 ms-2">
             <Input
               type="number"
@@ -85,6 +63,32 @@ const Form = ({ setGifts, gifts, closeModal }) => {
               id="count"
               name="count"
               value={value.count}
+              onChange={onChangeInput}
+            />
+          </div>
+        </div>
+        <div className="d-flex mb-3">
+          <div className="col-6 me-2">
+            <label>Imagen del regalo:</label>
+            <Input
+              type="text"
+              className="form-control"
+              id="image"
+              name="image"
+              placeholder="https://www.google.com/image"
+              value={value.image}
+              onChange={onChangeInput}
+            />
+          </div>
+          <div className="col-6">
+            <label>Destinatario:</label>
+            <Input
+              type="text"
+              className="form-control"
+              id="addresse"
+              name="addresse"
+              placeholder="persona"
+              value={value.addresse}
               onChange={onChangeInput}
             />
           </div>

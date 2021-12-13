@@ -25,6 +25,7 @@ ReactModal.Header = styled.header`
   button {
     background: none;
     border: none;
+    font-size: 18px;
   }
 `
 

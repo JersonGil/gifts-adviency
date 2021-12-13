@@ -5,6 +5,9 @@ const Container = styled.form`
 
   label {
     text-transform: capitalize;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
   }
 `;
 

@@ -15,12 +15,12 @@ const GiftsList = ({ handleDeleteGifts, handleDeleteAllGifts, gifts }) => {
         <div className="w-100">
           {newGifts.map((g, index) => (
             <div className="container-icon" key={index}>
-              <label>
-                <Images img={g.image} width={40} height={40} alt={g.gift} />
-                {" - "}
+              <Images img={g.image} width={40} height={40} alt={g.gift} />
+              <label className="label-container">
                 {g.gift}
+                <span>{g.addresse}</span>
               </label>
-              <label>{g.count}</label>
+              <span className="badge">{g.count}</span>
               <button
                 onClick={() => handleDeleteGifts(index)}
                 className="btn-icon"
