@@ -24,8 +24,8 @@ export default function App() {
 
   return (
     <Container className="container">
-      <div className="d-flex w-100">
-        <div className="col-6">
+      <div className="d-flex w-100 h-100">
+        <div className="col-6 d-flex align-items-center">
           <Card>
             <Card.Header>
               <h1>Regalos:</h1>
@@ -46,11 +46,8 @@ export default function App() {
               </Modal>
               <h3>Lista:</h3>
               <GiftsList
-                handleDeleteAllGifts={() => {
-                  setGifts([]);
-                  localStorage.setItem('gifts', JSON.stringify([]))
-                }}
                 gifts={gifts}
+                setGifts={setGifts}
                 handleDeleteGifts={handleDeleteGifts}
               />
             </Card.Body>

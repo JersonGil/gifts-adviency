@@ -11,6 +11,7 @@ const ReactModal = styled(Modal)`
   padding: 1em;
   background-color: #fff;
   border-radius: 8px;
+  box-shadow: 6px 17px 31px -5px rgba(0, 0, 0, 0.57);
 `
 
 ReactModal.Header = styled.header`

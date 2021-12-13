@@ -4,45 +4,56 @@ const List = styled.div`
   display: flex;
   flex-wrap: no-wrap;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
-  height: 150px;
-  overflow-y: auto;
 
-  .container-icon {
+  .gift-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: 40px 1fr 40px 1fr;
-    align-items: center;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0 10px;
 
-    .btn-icon {
-      background: none;
-      border: none;
-      text-align: right;
-
-      &:hover {
-        color: red;
+    .container-icon {
+      display: grid;
+      grid-template-columns: 40px 1fr 40px 1fr;
+      align-items: center;
+  
+      .btn-icon {
+        background: none;
+        border: none;
+        text-align: right;
+  
+        &:hover {
+          color: red;
+        }
       }
     }
   }
 
-  label {
-    font-size: 16px;
-    font-family: "Roboto", sans-serif;
-    text-transform: capitalize;
+  .label-container {
+    display: flex;
+    flex-direction: column;
     text-align: left;
     margin-left: 10px;
 
-    &.label-container {
-      display: flex;
-      flex-direction: column;
+    label {
+      width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 16px;
+      font-family: "Roboto", sans-serif;
+      text-transform: capitalize;
+      line-height: 14px;
+    }
 
-      span {
-        font-size: 12px;
-        color: #9d8e8e;
-        margin: 0;
-        line-height: 10px;
-      }
+    span {
+      font-size: 12px;
+      color: #9d8e8e;
+      line-height: 14px;
+      width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 

@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 100vh;
   margin: auto;
 
   h1 {
@@ -24,7 +24,7 @@ const Container = styled.div`
   .image {
     background-image: url("https://cdn.dribbble.com/users/225098/screenshots/14819388/media/448c404fc0df81a1a6c7ab20bbe3ae7f.png");
     background-repeat: no-repeat;
-    background-size: 650px 500px;
+    background-size: cover;
     height: 100%;
     background-position: center;
   }
