@@ -69,7 +69,6 @@ const Form = ({ setGifts, gifts, closeModal }) => {
         </div>
         <div className="d-flex mb-3">
           <div className="col-6 me-2">
-            <label>Imagen del regalo:</label>
             <Input
               type="text"
               className="form-control"
@@ -78,10 +77,10 @@ const Form = ({ setGifts, gifts, closeModal }) => {
               placeholder="https://www.google.com/image"
               value={value.image}
               onChange={onChangeInput}
+              labelText="Imagen del regalo:"
             />
           </div>
           <div className="col-6">
-            <label>Destinatario:</label>
             <Input
               type="text"
               className="form-control"
@@ -90,6 +89,7 @@ const Form = ({ setGifts, gifts, closeModal }) => {
               placeholder="persona"
               value={value.addresse}
               onChange={onChangeInput}
+              labelText="Destinatario:"
             />
           </div>
         </div>
