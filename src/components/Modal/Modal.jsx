@@ -6,7 +6,12 @@ import ReactModal from './styles'
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({isOpen, title, closeModal, children}) => {
+const Modal = ({
+  isOpen,
+  title,
+  closeModal,
+  children
+}) => {
   return (
     <ReactModal
       isOpen={isOpen}

@@ -5,7 +5,7 @@ import { IMAGE } from '../../utils/constants'
 
 const Images = ({ img, alt, width, height }) => (
   <img
-    src={img ?? IMAGE}
+    src={img === '' ? IMAGE : img}
     className="img-thumbnail rounded"
     alt={alt}
     width={width}
@@ -14,7 +14,7 @@ const Images = ({ img, alt, width, height }) => (
 )
 
 Images.propTypes = {
-  img: PropTypes.string.isRequired,
+  img: PropTypes.string,
   alt: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number

@@ -2,38 +2,65 @@ import { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import Input from "../Input/Input"
 import Container from "./styles"
-import { isUndefined, isEmpty } from 'lodash'
+import { isUndefined, isEmpty, uniqueId } from 'lodash'
 import { INITIAL_VALUE } from '../../utils/constants'
 
-const Form = ({ setGifts, gifts, closeModal }) => {
+const Form = ({
+  gifts,
+  editGifts,
+  isEdit,
+  setGifts,
+  closeModal
+}) => {
   const [value, setValue] = useState(INITIAL_VALUE);
 
   useEffect(() => {
-    setValue(INITIAL_VALUE);
-  }, [])
+    isEdit && setValue(editGifts);
+  }, [editGifts, isEdit])
 
   const onChangeInput = (e) => {
     const valueInput = e.target.value;
 
     if (valueInput !== "" || valueInput > 0) {
-      setValue({
-        ...value,
-        [e.target.name]: valueInput
-      });
+      if (isEdit) {
+        setValue({
+          ...value,
+          [e.target.name]: valueInput
+        });
+      } else {
+        setValue({
+          ...value,
+          id: uniqueId(),
+          [e.target.name]: valueInput
+        });
+      }
     }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const totalGifts = gifts.find((gift) => gift.gift === value.gift);
+    const totalGifts = !isEdit ? gifts.find((gift) => gift.gift === value.gift) : undefined
 
     if (value.gift !== "" && value.count > 0 && isUndefined(totalGifts)) {
-      setGifts((prevState) => [...prevState, value]);
-      const oldGifts = JSON.parse(localStorage.getItem('gifts'))
-      isEmpty(oldGifts)
-        ? localStorage.setItem('gifts', JSON.stringify([value]))
-        : localStorage.setItem('gifts', JSON.stringify([...oldGifts, value]))
+      if (!isEdit) {
+        setGifts((prevState) => [...prevState, value]);
+        const oldGifts = JSON.parse(localStorage.getItem('gifts'))
+        isEmpty(oldGifts)
+          ? localStorage.setItem('gifts', JSON.stringify([value]))
+          : localStorage.setItem('gifts', JSON.stringify([...oldGifts, value]))
+      } else {
+        const gifts = JSON.parse(localStorage.getItem('gifts'))
+        const newArrayGifts = gifts.map(gift => {
+          if (gift.id === value.id) {
+            return value
+          } else {
+            return gift
+          }
+        })
+        setGifts(newArrayGifts)
+        localStorage.setItem('gifts', JSON.stringify(newArrayGifts))
+      }
     }
 
     closeModal(false)
@@ -105,6 +132,8 @@ const Form = ({ setGifts, gifts, closeModal }) => {
 
 Form.propTypes = {
   gifts: PropTypes.array,
+  editGifts: PropTypes.object,
+  isEdit: PropTypes.bool,
   setGifts: PropTypes.func,
   closeModal: PropTypes.func
 };

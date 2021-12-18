@@ -15,7 +15,7 @@ const List = styled.div`
 
     .container-icon {
       display: grid;
-      grid-template-columns: 40px 1fr 40px 1fr;
+      grid-template-columns: 40px 1fr 40px 50px 1fr;
       align-items: center;
   
       .btn-icon {
@@ -23,7 +23,7 @@ const List = styled.div`
         border: none;
         text-align: right;
   
-        &:hover {
+        &.delete:hover {
           color: red;
         }
       }
