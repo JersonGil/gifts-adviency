@@ -20,10 +20,17 @@ const App = () => {
   const [editGifts, setEditGifts] = useState(INITIAL_VALUE)
   const [isOpen, setIsOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   
   useEffect(async () => {
     const dataGifts = await getGifts()
     setGifts(dataGifts)
+  }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
   }, [])
 
   const handleDeleteGifts = (index) => {
@@ -44,7 +51,7 @@ const App = () => {
       <div className="d-flex w-100 h-100">
         <div className="col-6 d-flex align-items-center">
           {
-            isEmpty(gifts) 
+            isLoading 
               ? (
                 <Container.Article>
                   <ReactLoading type="spin" color="#198754" height={200} width={150} />
