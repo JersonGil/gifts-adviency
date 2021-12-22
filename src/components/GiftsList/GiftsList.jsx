@@ -24,6 +24,7 @@ const GiftsList = ({
                 <label>{g.gift}</label>
                 <span>{g.addresse}</span>
               </div>
+              <label>$ {parseInt(g.price).toFixed(2)}</label>
               <span className="badge">{g.count}</span>
               <button
                 onClick={() => handleEditGifts(g)}

@@ -15,8 +15,9 @@ const List = styled.div`
 
     .container-icon {
       display: grid;
-      grid-template-columns: 40px 1fr 40px 50px 1fr;
+      grid-template-columns: 40px 80px 80px 60px 40px 1fr;
       align-items: center;
+      justify-items: start;
   
       .btn-icon {
         background: none;
@@ -37,7 +38,6 @@ const List = styled.div`
     margin-left: 10px;
 
     label {
-      width: 120px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

@@ -5,7 +5,7 @@ const ReactModal = styled(Modal)`
   width: 100%;
   max-width: 450px;
   position: absolute;
-  top: 25%;
+  top: 15%;
   left: 35%;
   border: 1px solid #000;
   padding: 1em;

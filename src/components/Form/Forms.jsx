@@ -90,7 +90,7 @@ const Form = ({
     e.preventDefault()
     const keys = Object.keys(GIFTS)
     setValue({
-      gift: GIFTS[keys[ keys.length * Math.random() << 0]]
+      gift: GIFTS[keys[keys.length * Math.random() << 0]]
     })
   }
 
@@ -122,6 +122,19 @@ const Form = ({
               id="count"
               name="count"
               value={value.count}
+              onChange={onChangeInput}
+            />
+          </div>
+        </div>
+        <div className="d-flex mb-3">
+          <div className="col-12 ms-2">
+            <Input
+              type="number"
+              className="form-control"
+              id="price"
+              name="price"
+              value={value.price}
+              labelText="Precio del regalo:"
               onChange={onChangeInput}
             />
           </div>

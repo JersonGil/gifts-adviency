@@ -2,6 +2,7 @@ export const INITIAL_VALUE = {
   id: 0,
   gift: '',
   count: 0,
+  price: 0,
   image: '',
   addresse: ''
 }

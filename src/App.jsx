@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, StrictMode } from "react"
 import GlobalStyle from "./components/GlobalStyles/GlobalStyles"
 import { isEmpty } from 'lodash'
 
@@ -47,63 +47,65 @@ const App = () => {
   }
 
   return (
-    <Container className="container">
-      <div className="d-flex w-100 h-100">
-        <div className="col-6 d-flex align-items-center">
-          {
-            isLoading 
-              ? (
-                <Container.Article>
-                  <ReactLoading type="spin" color="#198754" height={200} width={150} />
-                  <label>Cargando</label>
-                </Container.Article>
-                )
-              : (
-                <Card>
-                  <Card.Header>
-                    <h1>Regalos:</h1>
-                  </Card.Header>
-                  <Card.Body>
-                    <button 
-                      className="btn btn-success mb-3"
-                      onClick={() => {
-                        setIsEdit(false)
-                        setIsOpen(true)
-                      }}
-                    >
-                      Agregar Regalos
-                    </button>
-                    <Modal
-                      title={isEdit ? TITLE.edit : TITLE.add}
-                      isOpen={isOpen}
-                      closeModal={() => setIsOpen(false)}
-                    >
-                      <Forms
+    <StrictMode>
+      <Container className="container">
+        <div className="d-flex w-100 h-100">
+          <div className="col-6 d-flex align-items-center">
+            {
+              isLoading 
+                ? (
+                  <Container.Article>
+                    <ReactLoading type="spin" color="#198754" height={200} width={150} />
+                    <label>Cargando</label>
+                  </Container.Article>
+                  )
+                : (
+                  <Card>
+                    <Card.Header>
+                      <h1>Regalos:</h1>
+                    </Card.Header>
+                    <Card.Body>
+                      <button 
+                        className="btn btn-success mb-3"
+                        onClick={() => {
+                          setIsEdit(false)
+                          setIsOpen(true)
+                        }}
+                      >
+                        Agregar Regalos
+                      </button>
+                      <Modal
+                        title={isEdit ? TITLE.edit : TITLE.add}
+                        isOpen={isOpen}
+                        closeModal={() => setIsOpen(false)}
+                      >
+                        <Forms
+                          gifts={gifts}
+                          editGifts={editGifts}
+                          setGifts={setGifts}
+                          closeModal={setIsOpen}
+                          isEdit={isEdit}
+                        />
+                      </Modal>
+                      <h3>Lista:</h3>
+                      <GiftsList
                         gifts={gifts}
-                        editGifts={editGifts}
                         setGifts={setGifts}
-                        closeModal={setIsOpen}
-                        isEdit={isEdit}
+                        handleDeleteGifts={handleDeleteGifts}
+                        handleEditGifts={handleEditGifts}
                       />
-                    </Modal>
-                    <h3>Lista:</h3>
-                    <GiftsList
-                      gifts={gifts}
-                      setGifts={setGifts}
-                      handleDeleteGifts={handleDeleteGifts}
-                      handleEditGifts={handleEditGifts}
-                    />
-                  </Card.Body>
-                </Card>
-              )
-          }
+                    </Card.Body>
+                  </Card>
+                )
+            }
+          </div>
+          <div className="col">
+            <div className="image" />
+          </div>
         </div>
-        <div className="col">
-          <div className="image" />
-        </div>
-      </div>
-      <GlobalStyle />
-    </Container>
+        <GlobalStyle />
+      </Container>
+    </StrictMode>
   )
 }
 
