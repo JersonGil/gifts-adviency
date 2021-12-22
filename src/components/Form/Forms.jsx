@@ -41,7 +41,7 @@ const Form = ({
         });
       }
     }
-  };
+  }
 
   /**
    * funcion para guardar los regalos que ingresa o edita el usuario
@@ -55,6 +55,9 @@ const Form = ({
     const totalGifts = !isEdit ? gifts.find((gift) => gift.gift === value.gift) : undefined
 
     if (value.gift !== "" && value.count > 0 && isUndefined(totalGifts)) {
+      const price = parseInt(value.count) * parseInt(value.price)
+      value.price = price
+
       if (!isEdit) {
         setGifts((prevState) => [...prevState, value]);
         const oldGifts = JSON.parse(localStorage.getItem('gifts'))
@@ -77,8 +80,8 @@ const Form = ({
 
     closeModal(false)
 
-    setValue(INITIAL_VALUE);
-  };
+    setValue(INITIAL_VALUE)
+  }
 
   /**
    * Funcion para colocar un regalo random en el input de regalos

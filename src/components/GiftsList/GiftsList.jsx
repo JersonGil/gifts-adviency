@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import isNaN from 'lodash/isNaN'
 
 /** CHILD COMPONENTS */
 import EmptyList from "./EmptyList";
@@ -24,7 +25,7 @@ const GiftsList = ({
                 <label>{g.gift}</label>
                 <span>{g.addresse}</span>
               </div>
-              <label>$ {parseInt(g.price).toFixed(2)}</label>
+              <label>$ {isNaN(parseInt(g.price).toFixed(2)) ? 0 : parseInt(g.price).toFixed(2)}</label>
               <span className="badge">{g.count}</span>
               <button
                 onClick={() => handleEditGifts(g)}
