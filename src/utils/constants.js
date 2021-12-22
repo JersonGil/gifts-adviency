@@ -12,3 +12,11 @@ export const TITLE = {
   add: 'Que deseas para Navidad?',
   edit: 'Editar Datos'
 }
+
+export const GIFTS = {
+  pelota: 'pelota',
+  xbox: 'xbox',
+  play: 'play',
+  gatos: 'gatos',
+  perros: 'perros'
+}

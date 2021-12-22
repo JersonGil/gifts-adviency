@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Input from "../Input/Input"
 import Container from "./styles"
 import { isUndefined, isEmpty, uniqueId } from 'lodash'
-import { INITIAL_VALUE } from '../../utils/constants'
+import { INITIAL_VALUE, GIFTS } from '../../utils/constants'
 
 const Form = ({
   gifts,
@@ -18,6 +18,12 @@ const Form = ({
     isEdit && setValue(editGifts);
   }, [editGifts, isEdit])
 
+  /**
+   * funcion que guarda en el estado lo que se ingresa en un input
+   * 
+   * @function onChangeInput
+   * @param {object} e - input event 
+   */
   const onChangeInput = (e) => {
     const valueInput = e.target.value;
 
@@ -37,8 +43,14 @@ const Form = ({
     }
   };
 
+  /**
+   * funcion para guardar los regalos que ingresa o edita el usuario
+   * 
+   * @function onSubmit
+   * @param {object} e - event input
+   */
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const totalGifts = !isEdit ? gifts.find((gift) => gift.gift === value.gift) : undefined
 
@@ -68,8 +80,28 @@ const Form = ({
     setValue(INITIAL_VALUE);
   };
 
+  /**
+   * Funcion para colocar un regalo random en el input de regalos
+   *
+   * @function onRandomGifts
+   * @param {object} e - input event 
+   */
+  const onRandomGifts = (e) => {
+    e.preventDefault()
+    const keys = Object.keys(GIFTS)
+    setValue({
+      gift: GIFTS[keys[ keys.length * Math.random() << 0]]
+    })
+  }
+
   return (
     <Container autoComplete="off" className="row g-3" onSubmit={onSubmit}>
+      <button
+        className="btn btn-primary mb-3 w-50"
+        onClick={onRandomGifts}
+      >
+        Regalo aleatorio
+      </button>
       <div className="col-11">
         <div className="d-flex mb-3">
           <div className="col-10">
